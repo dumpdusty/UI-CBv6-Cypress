@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cop": "npx cypress open -b electron"
+    "cop": "npx cypress open -b electron",
+    "crun": "npx cypress run -b electron"
   },
   "keywords": [],
   "author": "",
