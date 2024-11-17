@@ -5,6 +5,11 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    excludeSpecPattern: 'cypress/e2e/examples/**/*'
+    baseUrl: 'https://clientbase.pasv.us/v6',
+    excludeSpecPattern: 'cypress/e2e/examples/**/*',
+    viewportWidth: 1920,
+    viewportHeight: 1080,
+    defaultCommandTimeout: 5000,
+
   },
 });
