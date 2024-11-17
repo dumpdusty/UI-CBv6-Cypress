@@ -30,3 +30,11 @@ Cypress.Commands.add('login', (email, password) => {
     cy.get('[name="password"]').type(password)
     cy.get('[type="submit"]').click()
 })
+
+Cypress.Commands.add('apiLogin', (email, password) => {
+    cy.visit(`/user/login`)
+    cy.request(
+        'POST',
+        'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
+        { email, password })
+})
