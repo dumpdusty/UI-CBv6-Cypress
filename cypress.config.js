@@ -9,6 +9,6 @@ module.exports = defineConfig({
     excludeSpecPattern: 'cypress/e2e/examples/**/*',
     viewportWidth: 1920,
     viewportHeight: 1080,
-    defaultCommandTimeout: 5000
+    pageLoadTimeout: 40000
   },
 });
