@@ -26,6 +26,18 @@ describe('AUTHORIZATION', () => {
             cy.location(`pathname`).should(`contain`, `login`)
             cy.get(`[role="alert"]`).should(`contain.text`, `failed`)
         });
-        
+    });
+
+    // TODO: find the solution
+    describe.only('win-alert', () => {
+        it('test', () => {
+            cy.login(`a`, ' ')
+
+            cy.on(`windows:alert`, (message) => {
+                cy.log(message)
+                expect(message).to.eq('enfjewg')
+                return true
+            })
+        });
     });
 });
