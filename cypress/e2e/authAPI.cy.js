@@ -56,20 +56,36 @@ describe('API AUTH', () => {
 });
 
 
-describe('API AUTH with mocks', () => {
-    describe('positive', () => {
+describe('AUTH with mocks', () => {
+    describe('MOCK WITH UI LOGIN', () => {
         it('verify user can login with valid credentials', () => {
             cy.intercept(
                 'POST',
                 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
-                authSuccessResponse).as('loginRequest')
+                authSuccessResponse).as('loginUIRequest')
 
             cy.login(Cypress.env('email'), Cypress.env(`password`))
 
-            cy.get(`@loginRequest`).its('response').then(res => {
-                expect(res.statusCode).to.eq(200)
-                expect(res.body.message).to.eq(`Auth success`)
+            cy.get(`@loginUIRequest`).its('response').then(res => {
+                    expect(res.statusCode).to.eq(200)
+                    expect(res.body.message).to.eq(`Auth success`)
             })
         })
+    });
+
+    describe('MOCK WITH API LOGIN', () => {
+        it('verify user can login with valid credentials', () => {
+            cy.intercept(
+                'POST',
+                'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
+                authSuccessResponse).as('loginAPIRequest')
+            
+            cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then(response => {
+                expect(response.status).to.eq(200);
+                expect(response.body.message).to.equal("Auth success");
+            })
+
+            
+        });
     });
 });
