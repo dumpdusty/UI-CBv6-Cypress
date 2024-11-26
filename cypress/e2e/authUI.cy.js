@@ -28,16 +28,53 @@ describe('AUTHORIZATION', () => {
         });
     });
 
-    // TODO: find the solution
-    describe.only('win-alert', () => {
-        it('test', () => {
-            cy.login(`a`, ' ')
+    describe('INPUT FIELDS VALIDATION', () => {
+        beforeEach(() => { 
+            cy.visit('/user/login')
+        })
+        it('fields validation option 1 - interacting with DOM', () => {
+            cy.get('[name="email"]').then(($input) => {
+                $input[0].checkValidity();
+                expect($input[0].validationMessage).to.eq(
+                "Please fill out this field."
+                );
+            });
 
-            cy.on(`windows:alert`, (message) => {
-                cy.log(message)
-                expect(message).to.eq('enfjewg')
-                return true
+            cy.get('[name="email"]').type('a').then(($input) => {
+                $input[0].checkValidity();
+                expect($input[0].validationMessage).to.eq(
+                "Please include an '@' in the email address. 'a' is missing an '@'."
+                );
+            });
+
+            cy.get('[name="email"]').type('a@').then(($input) => {
+                $input[0].checkValidity();
+                expect($input[0].validationMessage).to.eq(
+                "Please enter a part following '@'. 'aa@' is incomplete."
+                );
+            });
+
+            cy.get('[name="password"]').then(($input) => {
+                $input[0].checkValidity();
+                expect($input[0].validationMessage).to.eq(
+                "Please fill out this field."
+                );
+            });
+        });
+
+        it('fields validation option 2 - using Cypress only', () => {
+            cy.get('[name="email"]')
+                .should('have.prop', 'validationMessage', "Please fill out this field.");
+            
+            cy.get('[name="email"]').type(`a`).then(input => { 
+                cy.wrap(input).should('have.prop', 'validationMessage', "Please include an '@' in the email address. 'a' is missing an '@'.")
             })
+
+            cy.get('[name="email"]').type(`a@`).then(input => { 
+                cy.wrap(input).should('have.prop', 'validationMessage', "Please enter a part following '@'. 'aa@' is incomplete.")
+            })
+
+            cy.get('[name="password"]').should('have.prop', 'validationMessage', "Please fill out this field.")
         });
     });
 });
