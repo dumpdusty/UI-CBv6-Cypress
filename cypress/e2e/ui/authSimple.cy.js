@@ -1,3 +1,4 @@
+
 describe('AUTHORIZATION', () => {
     describe('positive', () => {
         it('verify user login with valid credentials', () => {
@@ -32,6 +33,8 @@ describe('AUTHORIZATION', () => {
         beforeEach(() => { 
             cy.visit('/user/login')
         })
+
+        /*
         it('fields validation option 1 - interacting with DOM', () => {
             cy.get('[name="email"]').then(($input) => {
                 $input[0].checkValidity();
@@ -54,13 +57,14 @@ describe('AUTHORIZATION', () => {
                 );
             });
 
-            cy.get('[name="password"]').then(($input) => {
-                $input[0].checkValidity();
-                expect($input[0].validationMessage).to.eq(
+            cy.get('[name="password"]').then((input) => {
+                input[0].checkValidity();
+                expect(input[0].validationMessage).to.eq(
                 "Please fill out this field."
                 );
             });
         });
+        */
 
         it('fields validation option 2 - using Cypress only', () => {
             cy.get('[name="email"]')
@@ -78,3 +82,4 @@ describe('AUTHORIZATION', () => {
         });
     });
 });
+

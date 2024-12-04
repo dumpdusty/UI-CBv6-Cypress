@@ -9,13 +9,13 @@ declare namespace Cypress {
        * @example
        * cy.login('email', 'password')
        */
-      login(email: string, password: string): void;
-
-        /**
-         * Log into app using API
-         * @example
-         * cy.login('email', 'password')
-         */
-        apiLogin(email: string, password: string): void;
+      login(email: string, password: string): Chainable<Subject>;
+        //
+        // /**
+        //  * Log into app using API
+        //  * @example
+        //  * cy.login('email', 'password')
+        //  */
+        // apiLogin(email: string, password: string): Chainable<Subject>;
     }
   }

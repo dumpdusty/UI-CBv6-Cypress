@@ -1,4 +1,4 @@
-import authSuccessResponse from '../fixtures/authSuccessResponse.json';
+import authSuccessResponse from '../../fixtures/authSuccessResponse.json';
 
 describe('API AUTH', () => {
     describe('positive', () => {
