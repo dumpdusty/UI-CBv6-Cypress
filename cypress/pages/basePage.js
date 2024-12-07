@@ -8,7 +8,7 @@ class BasePage {
         return cy.get('[name="password"]')
     }
 
-    get loginBtn(){
+    get submitBtn(){
         return cy.get('[type="submit"]')
     }
 

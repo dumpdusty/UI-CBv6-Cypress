@@ -10,7 +10,7 @@ class LoginPage extends BasePage{
         cy.visit('/user/login')
         this.inputEmail.type(email)
         this.inputPassword.type(password)
-        this.loginBtn.click()
+        this.submitBtn.click()
     }
 }
 

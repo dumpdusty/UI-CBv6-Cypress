@@ -1,0 +1,82 @@
+<body>
+    <h2 id="tittle">Classes: Intro
+        <script type="text/javascript">
+
+
+        class Rectangle{
+            // new instance parameters setup function
+            constructor(width, height, color = 'black') {
+            // parameters of class
+                this.width = width;
+                this.height = height;
+                this.color = color;
+            }
+
+            // getter - to use methods as a parameter
+            get area(){
+                return this.width * this.height
+            }
+
+            // setter - to change the parameters (?)
+            set area (value){
+                this.width = 55
+                this.height = 1254
+            }
+
+            // methods of class - could be used only in new created instances
+            getArea(){
+                return this.width * this.height
+            }
+
+            // as an example of non-static method which could not be
+            // called with class itself
+            printText(text){
+                console.log(text)
+            }
+            printDescription = () => {
+                console.log(`This rectangle has ${this.getArea()}sq feet and color is ${this.color}`)
+            }
+
+            // static methods - to use without creating a new instance
+            // NB: will not be inherit by the instance
+            static equals(a, b){
+                return a.width * a.height === b.width * b.height
+            }
+
+            static isValidDimensions(width, height){
+                return width !== height
+
+            }
+
+        }
+
+
+
+        class Human {
+            constructor(_firstName, _lastName, _age){
+                this.firstName = _firstName;
+                this.lastName = _lastName
+                this.age = _age
+            }
+
+            defineUser(){
+                console.log(`My name is ${this.firstName} ${this.lastName} and I am ${this.age} years old`)
+            }
+
+        }
+
+        class User extends Human{
+            constructor(_firstName, _lastName, _age, _occupation){
+                super(_firstName, _lastName, _age)
+                this.occupation = _occupation
+            }
+
+
+        }
+
+
+
+
+        </script>
+    </h2>>
+</body>>

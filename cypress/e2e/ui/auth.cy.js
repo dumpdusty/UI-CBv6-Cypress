@@ -4,9 +4,10 @@ import LoginPage from "../../pages/loginPage";
 describe('LOGIN USING LOGIN PAGE', () => {
     it('auth using elements', () => {
         LoginPage.open();
+
         LoginPage.inputEmail.type(Cypress.env('email'))
         LoginPage.inputPassword.type(Cypress.env('password'))
-        LoginPage.loginBtn.click();
+        LoginPage.submitBtn.click();
     });
 
     it('auth using login method', () => {
