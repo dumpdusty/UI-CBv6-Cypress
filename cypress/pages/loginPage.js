@@ -1,13 +1,14 @@
-import BasePage from "./basePage";
+import Page from "./page";
+import {LINKS} from "../fixtures/data";
 
-class LoginPage extends BasePage{
+class LoginPage extends Page{
 
     open(){
-        return super.open('/user/login')
+        return super.open(LINKS.LOGIN)
     }
 
     login(email, password){
-        cy.visit('/user/login')
+        cy.visit(LINKS.LOGIN)
         this.inputEmail.type(email)
         this.inputPassword.type(password)
         this.submitBtn.click()
