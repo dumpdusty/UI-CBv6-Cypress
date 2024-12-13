@@ -8,13 +8,13 @@ export const LINKS = {
 }
 
 export const TEXT = {
-    registrationPage: {
-        appName: `ClientBase`,
+    REGISTRATION_PAGE: {
+        APP_NAME: `ClientBase`,
         CREATE_ACCOUNT: 'Create an account as a business owner',
         SIGNUP: 'Sign Up'
     },
 
-    loginPage: {
+    LOGIN_PAGE: {
 
     }
 

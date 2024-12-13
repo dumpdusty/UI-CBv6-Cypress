@@ -1,8 +1,7 @@
 import ExtPage from "./extPage";
 import {LINKS} from "../../fixtures/data";
 
-class LoginPage extends ExtPage{
-
+class AuthPage extends ExtPage{
     open(){
         return super.open(LINKS.LOGIN)
     }
@@ -15,4 +14,4 @@ class LoginPage extends ExtPage{
     }
 }
 
-export default new LoginPage
+export default new AuthPage
