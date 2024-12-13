@@ -1,5 +1,5 @@
 import RegistrationPage from "../../pages/extPages/registrationPage";
-import {TEXT} from "../../fixtures/data";
+import {LABEL, ALERTS} from "../../fixtures/data";
 
 describe('REGISTER', () => {
     describe('POSITIVE', () => {
@@ -25,9 +25,16 @@ describe('REGISTER', () => {
                 .should(`be.visible`)
                 .click()
 
-            cy.url().should(`include`, `onboarding`)
+            RegistrationPage.verifyUrl(`onboarding`)
             cy.get(`.container`).find(`.ms-2`)
                 .should(`have.text`, `Confirm Email`)
+        });
+    });
+
+    describe.only('NEGATIVE', () => {
+        it('signup with existing email', () => {
+            RegistrationPage.sigUp(Cypress.env('email'))
+            RegistrationPage.errorMessage.should(`be.visible`).and(`have.text`, ALERTS.SIGNUP)
         });
     });
 
@@ -35,9 +42,9 @@ describe('REGISTER', () => {
         it('verify header elements', () => {
             RegistrationPage.open()
 
-            RegistrationPage.verifyHeaderElements(`.header-logo`, TEXT.REGISTRATION_PAGE.APP_NAME)
-            RegistrationPage.verifyHeaderElements(`.card-title`, TEXT.REGISTRATION_PAGE.SIGNUP)
-            RegistrationPage.verifyHeaderElements(`.card-text`, TEXT.REGISTRATION_PAGE.CREATE_ACCOUNT)
+            RegistrationPage.verifyHeaderElements(`.header-logo`, LABEL.REGISTRATION_PAGE.APP_NAME)
+            RegistrationPage.verifyHeaderElements(`.card-title`, LABEL.REGISTRATION_PAGE.SIGNUP)
+            RegistrationPage.verifyHeaderElements(`.card-text`, LABEL.REGISTRATION_PAGE.CREATE_ACCOUNT)
         });
 
     });

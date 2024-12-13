@@ -13,4 +13,8 @@ export default class ExtPage extends Page{
     get submitBtn(){
         return cy.get('[type="submit"]')
     }
+
+    get errorMessage(){
+        return cy.get(`.ant-notification-notice-message`)
+    }
 }

@@ -7,7 +7,7 @@ export const LINKS = {
     LOGIN: '/user/login'
 }
 
-export const TEXT = {
+export const LABEL = {
     REGISTRATION_PAGE: {
         APP_NAME: `ClientBase`,
         CREATE_ACCOUNT: 'Create an account as a business owner',
@@ -18,4 +18,9 @@ export const TEXT = {
 
     }
 
+}
+
+export const ALERTS = {
+    SIGNUP: `User with this e-mail exists`,
+    LOGIN: `Auth failed`
 }

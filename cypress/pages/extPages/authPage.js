@@ -7,7 +7,7 @@ class AuthPage extends ExtPage{
     }
 
     login(email, password){
-        cy.visit(LINKS.LOGIN)
+        this.open(LINKS.LOGIN)
         this.inputEmail.type(email)
         this.inputPassword.type(password)
         this.submitBtn.click()

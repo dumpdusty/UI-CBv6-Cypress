@@ -18,6 +18,16 @@ class RegistrationPage extends ExtPage {
     open() {
         return super.open(LINKS.REGISTER)
     }
+
+    sigUp = (email) => {
+        this.open(LINKS.REGISTER)
+        this.inputCompany.type(`Black Pearl`)
+        this.inputFirstName.type(`Will`)
+        this.inputLastName.type(`Turner`)
+        this.inputEmail.type(email)
+        this.inputPassword.type(Cypress.env('password'))
+        this.submitBtn.click()
+    }
     verifyHeaderElements = (selector, text) => {
         cy.get(`.card-header`)
             .find(selector)
