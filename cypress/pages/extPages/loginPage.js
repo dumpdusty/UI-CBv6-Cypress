@@ -1,7 +1,7 @@
-import Page from "./page";
-import {LINKS} from "../fixtures/data";
+import ExtPage from "./extPage";
+import {LINKS} from "../../fixtures/data";
 
-class LoginPage extends Page{
+class LoginPage extends ExtPage{
 
     open(){
         return super.open(LINKS.LOGIN)

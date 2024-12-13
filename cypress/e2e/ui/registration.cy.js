@@ -1,4 +1,4 @@
-import RegistrationPage from '../../pages/registrationPage'
+import RegistrationPage from '../../pages/extPages/registrationPage'
 import {TEXT} from "../../fixtures/data";
 
 describe('REGISTER', () => {
