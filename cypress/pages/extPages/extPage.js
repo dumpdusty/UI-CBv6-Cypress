@@ -17,4 +17,10 @@ export default class ExtPage extends Page{
     get errorMessage(){
         return cy.get(`.ant-notification-notice-message`)
     }
+
+    verifyHeaderElements = (selector, text) => {
+        cy.get(`.card-header`)
+            .find(selector)
+            .should(`have.text`, text)
+    }
 }

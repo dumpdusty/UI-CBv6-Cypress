@@ -3,15 +3,9 @@ import {LABEL, ALERTS} from "../../fixtures/data";
 
 describe('REGISTER', () => {
     describe('POSITIVE', () => {
-        const newEmail = `user_${Date.now()}@pirate.com`;
-        it('verify page fields', () => {
-            RegistrationPage.open()
-            RegistrationPage.inputCompany.should('be.visible').type(`Black Pearl`)
-            RegistrationPage.inputFirstName.should(`be.visible`).type(`Jack`)
-            RegistrationPage.inputLastName.should(`be.visible`).type(`Sparrow`)
-            RegistrationPage.inputEmail.should(`be.visible`).type(newEmail)
-            RegistrationPage.inputPassword.should(`be.visible`).type(Cypress.env('password'))
-            RegistrationPage.submitBtn.should(`be.visible`).click()
+        it('verify user can register', () => {
+            const newEmail = `user_${Date.now()}@pirate.com`;
+            RegistrationPage.sigUp(newEmail)
 
             RegistrationPage.verifyUrl(`onboarding`)
             cy.get(`.container`).find(`.ms-2`).should(`have.text`, `Confirm Email`)
@@ -26,12 +20,32 @@ describe('REGISTER', () => {
     });
 
     describe('VERIFY WEB ELEMENTS', () => {
+      beforeEach(() => {
+          RegistrationPage.open()
+      })
         it('verify header elements', () => {
-            RegistrationPage.open()
-
             RegistrationPage.verifyHeaderElements(`.header-logo`, LABEL.REGISTRATION_PAGE.APP_NAME)
             RegistrationPage.verifyHeaderElements(`.card-title`, LABEL.REGISTRATION_PAGE.SIGNUP)
             RegistrationPage.verifyHeaderElements(`.card-text`, LABEL.REGISTRATION_PAGE.CREATE_ACCOUNT)
+        });
+
+        it('verify page fields', () => {
+            RegistrationPage.inputCompany.should('be.visible').and(`have.attr`, `placeholder`, `Enter company name`)
+            RegistrationPage.inputCompany.parent().should('have.text', `Company name`)
+
+            RegistrationPage.inputFirstName.should(`be.visible`).and(`have.attr`, `placeholder`, `Enter your first name`)
+            RegistrationPage.inputFirstName.parent().should('have.text', `First name`)
+
+            RegistrationPage.inputLastName.should(`be.visible`).and(`have.attr`, `placeholder`, `Enter last name`)
+            RegistrationPage.inputLastName.parent().should('have.text', `Last name`)
+
+            RegistrationPage.inputEmail.should(`be.visible`).and(`have.attr`, `placeholder`, `Enter email`)
+            RegistrationPage.inputEmail.parent().should('have.text', `Email`)
+
+            RegistrationPage.inputPassword.should(`be.visible`).and(`have.attr`, `placeholder`, `Enter password`)
+            RegistrationPage.inputPassword.parent().should('have.text', `Password`)
+
+            RegistrationPage.submitBtn.should(`be.visible`).and(`have.text`, `Create Account`)
         });
 
     });

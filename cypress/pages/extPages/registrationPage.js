@@ -28,11 +28,6 @@ class RegistrationPage extends ExtPage {
         this.inputPassword.type(Cypress.env('password'))
         this.submitBtn.click()
     }
-    verifyHeaderElements = (selector, text) => {
-        cy.get(`.card-header`)
-            .find(selector)
-            .should(`have.text`, text)
-    }
 }
 
 export default new RegistrationPage()
