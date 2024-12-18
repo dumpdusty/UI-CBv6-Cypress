@@ -1,8 +1,5 @@
 import AuthPage from "../../pages/extPages/authPage";
 import {ALERTS, LABEL} from "../../fixtures/data";
-import RegistrationPage from "../../pages/extPages/registrationPage";
-
-
 describe('AUTHORISATION', () => {
     describe('POSITIVE', () => {
         it('verify user can login with valid credentials', () => {
