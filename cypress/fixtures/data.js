@@ -8,14 +8,15 @@ export const LINKS = {
 }
 
 export const LABEL = {
+    APP_NAME: `ClientBase`,
     REGISTRATION_PAGE: {
-        APP_NAME: `ClientBase`,
-        CREATE_ACCOUNT: 'Create an account as a business owner',
-        SIGNUP: 'Sign Up'
+        FORM_NAME: 'Sign Up',
+        MESSAGE: 'Create an account as a business owner',
     },
 
     LOGIN_PAGE: {
-
+        FORM_NAME: 'Sign In',
+        MESSAGE: `Welcome back! Please signin to continue.`,
     }
 
 }

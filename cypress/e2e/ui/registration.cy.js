@@ -23,10 +23,11 @@ describe('REGISTER', () => {
       beforeEach(() => {
           RegistrationPage.open()
       })
+
         it('verify header elements', () => {
-            RegistrationPage.verifyHeaderElements(`.header-logo`, LABEL.REGISTRATION_PAGE.APP_NAME)
-            RegistrationPage.verifyHeaderElements(`.card-title`, LABEL.REGISTRATION_PAGE.SIGNUP)
-            RegistrationPage.verifyHeaderElements(`.card-text`, LABEL.REGISTRATION_PAGE.CREATE_ACCOUNT)
+            RegistrationPage.verifyHeaderElements(`.header-logo`, LABEL.APP_NAME)
+            RegistrationPage.verifyHeaderElements(`.card-title`, LABEL.REGISTRATION_PAGE.FORM_NAME)
+            RegistrationPage.verifyHeaderElements(`.card-text`, LABEL.REGISTRATION_PAGE.MESSAGE)
         });
 
         it('verify page fields', () => {
@@ -47,7 +48,5 @@ describe('REGISTER', () => {
 
             RegistrationPage.submitBtn.should(`be.visible`).and(`have.text`, `Create Account`)
         });
-
     });
-
 });
