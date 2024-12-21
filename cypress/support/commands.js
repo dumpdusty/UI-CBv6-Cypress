@@ -40,5 +40,11 @@ Cypress.Commands.add('apiLogin', (email, password) => {
             body: { email, password },
             failOnStatusCode: false,
         }
-    );
+    ).then(response => {
+        // will place token and userId values to the browser storage
+        // and any further requests won't require token value in headers
+        window.localStorage.setItem(`token`, response.body.payload.token)
+        window.localStorage.setItem(`userId`, response.body.payload._id)
+        return response
+    });
 })
