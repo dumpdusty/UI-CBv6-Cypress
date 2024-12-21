@@ -5,6 +5,7 @@ describe('API AUTH', () => {
         it('verify user can login with valid credentials', () => {
             cy.apiLogin(Cypress.env('email'), Cypress.env(`password`))
                 .then((response) => {
+                        // assertions could be split into multiple tests
                         expect(response.status).to.eq(200);
                         expect(response.body.payload).to.haveOwnProperty('token') // true
                         expect(response.body.message).to.eq(`Auth success`)
@@ -68,12 +69,12 @@ describe('AUTH with mocks', () => {
     });
 
     describe('MOCK WITH API LOGIN', () => {
-        it('verify user can login with valid credentials', () => {
+        it.only('verify user can login with valid credentials', () => {
             cy.intercept(
                 'POST',
                 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
                 authSuccessResponse).as('loginAPIRequest')
-            
+
             cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then(response => {
                 expect(response.status).to.eq(200);
                 expect(response.body.message).to.equal("Auth success");
