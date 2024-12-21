@@ -1,6 +1,5 @@
 import ExtPage from "../../pages/extPages/extPage";
 import {SELECTORS} from "../../fixtures/data";
-import RegistrationPage from "./registrationPage";
 
 class LandingPage extends ExtPage {
 
