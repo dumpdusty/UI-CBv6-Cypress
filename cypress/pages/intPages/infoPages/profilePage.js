@@ -1,8 +1,8 @@
 import InfoPage from '../infoPages/infoPage';
 
 class ProfilePage extends InfoPage {
-    open() {
-        return cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then((response)=> {
+    open(email, password) {
+        return cy.apiLogin(email, password).then((response)=> {
             return super.open(`/profile/${response.body.payload.userId}`)
         })
     }

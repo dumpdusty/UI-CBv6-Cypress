@@ -2,6 +2,7 @@ import authSuccessResponse from '../../fixtures/authSuccessResponse.json';
 
 describe('API AUTH', () => {
     describe('positive', () => {
+        // TODO place request in before hook and split assertions to few its
         it('verify user can login with valid credentials', () => {
             cy.apiLogin(Cypress.env('email'), Cypress.env(`password`))
                 .then((response) => {
@@ -61,17 +62,24 @@ describe('AUTH with mocks', () => {
 
             cy.login(Cypress.env('email'), Cypress.env(`password`))
 
-            cy.get(`@loginUIRequest`).its('response').then(res => {
-                    expect(res.statusCode).to.eq(200)
-                    expect(res.body.message).to.eq(`Auth success`)
+            cy.wait(`@loginUIRequest`).its(`response.body`).then(res => {
+                cy.log(JSON.stringify(res))
             })
+
+            cy.get(`@loginUIRequest`).then(interception => {
+                    expect(interception.response.statusCode).to.eq(200)
+                    expect(interception.response.body.message).to.eq(`Well done, man!`)
+            })
+
+            // cy.wait(`@loginUIRequest`).its(`response.body`).then(res => {
+            //     cy.log(JSON.stringify(res))
+            // })
         })
     });
 
-    describe.only('MOCK WITH API LOGIN', () => {
-
-        // TODO below is incorrect - cy.intercept should be used only with UI commands !!!
-        it('verify user can login with valid credentials', () => {
+    //  TODO below is incorrect - cy.intercept should be used only with UI commands !!!
+    describe('MOCK WITH API LOGIN', () => {
+        it.only('verify user can login with valid credentials', () => {
             cy.intercept(
                 'POST',
                 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
@@ -81,16 +89,6 @@ describe('AUTH with mocks', () => {
                 cy.log(JSON.stringify(response.body))
                 expect(response.status).to.eq(200);
                 expect(response.body.message).to.equal("Auth success");
-            })
-        });
-
-        it('test wait alias', () => {
-            cy.intercept(
-                'POST',
-                'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login', authSuccessResponse).as('loginAPIRequest')
-            cy.login(Cypress.env('email'), Cypress.env(`password`))
-            cy.wait(`@loginAPIRequest`).its(`response.body`).then(res => {
-                cy.log(JSON.stringify(res))
             })
         });
     });
