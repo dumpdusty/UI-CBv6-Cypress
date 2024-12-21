@@ -1,10 +1,9 @@
 import InfoPage from '../infoPages/infoPage';
-import AuthPage from "../../extPages/authPage";
 
 class CompanyPage extends InfoPage {
     open() {
-        return AuthPage.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then((data)=> {
-            return super.open(`/company/${data.companyId}`)
+        return cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then((response)=> {
+            return super.open(`/company/${response.body.payload.user.companyAccount}`)
         })
     }
 }

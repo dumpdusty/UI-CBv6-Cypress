@@ -69,7 +69,7 @@ describe('AUTH with mocks', () => {
     });
 
     describe('MOCK WITH API LOGIN', () => {
-        it.only('verify user can login with valid credentials', () => {
+        it('verify user can login with valid credentials', () => {
             cy.intercept(
                 'POST',
                 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
