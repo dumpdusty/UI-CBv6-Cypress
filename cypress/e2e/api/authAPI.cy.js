@@ -5,12 +5,6 @@ describe('API AUTH', () => {
         it('verify user can login with valid credentials', () => {
             cy.apiLogin(Cypress.env('email'), Cypress.env(`password`))
                 .then((response) => {
-                        // will place token and userId values to the browser storage
-                        // and any further requests won't require token value in headers
-                        window.localStorage.setItem(`token`, response.body.payload.token)
-                        window.localStorage.setItem(`userId`, response.body.payload._id)
-
-                        // simple response assertions
                         expect(response.status).to.eq(200);
                         expect(response.body.payload).to.haveOwnProperty('token') // true
                         expect(response.body.message).to.eq(`Auth success`)
