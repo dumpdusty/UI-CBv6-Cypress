@@ -7,8 +7,8 @@ module.exports = defineConfig({
     },
     baseUrl: 'https://clientbase.pasv.us/v6',
     excludeSpecPattern: 'cypress/e2e/examples/**/*',
-    viewportWidth: 1920,
-    viewportHeight: 1080,
+    viewportWidth: 1280,
+    viewportHeight: 720,
     pageLoadTimeout: 40000
   },
 });

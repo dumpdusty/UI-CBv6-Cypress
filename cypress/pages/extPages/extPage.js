@@ -23,4 +23,8 @@ export default class ExtPage extends Page{
             .find(selector)
             .should(`have.text`, text)
     }
+
+    print(){
+        return cy.log(`this is info page`)
+    }
 }
