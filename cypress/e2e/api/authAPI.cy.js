@@ -68,19 +68,30 @@ describe('AUTH with mocks', () => {
         })
     });
 
-    describe('MOCK WITH API LOGIN', () => {
+    describe.only('MOCK WITH API LOGIN', () => {
+
+        // TODO below is incorrect - cy.intercept should be used only with UI commands !!!
         it('verify user can login with valid credentials', () => {
             cy.intercept(
                 'POST',
                 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
-                authSuccessResponse).as('loginAPIRequest')
+                authSuccessResponse)
 
             cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then(response => {
+                cy.log(JSON.stringify(response.body))
                 expect(response.status).to.eq(200);
                 expect(response.body.message).to.equal("Auth success");
             })
+        });
 
-            
+        it('test wait alias', () => {
+            cy.intercept(
+                'POST',
+                'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login', authSuccessResponse).as('loginAPIRequest')
+            cy.login(Cypress.env('email'), Cypress.env(`password`))
+            cy.wait(`@loginAPIRequest`).its(`response.body`).then(res => {
+                cy.log(JSON.stringify(res))
+            })
         });
     });
 });
