@@ -8,6 +8,12 @@ export const LINKS = {
 }
 
 export const LABEL = {
+    HEADER: {
+        LANDING_PAGE: `Dispatching and accounting for service companies`
+    },
+    SUBHEADER: {
+        LANDING_PAGE: `The easiest way to manage the process of receiving and transmitting an order.`
+    },
     APP_NAME: `ClientBase`,
     REGISTRATION_PAGE: {
         FORM_NAME: 'Sign Up',

@@ -19,6 +19,18 @@ class LandingPage extends ExtPage {
         return cy.get('.d-flex > .sidebar-logo')
     }
 
+    get header(){
+        return cy.get(`h1`)
+    }
+
+    get loginLink(){
+        return cy.get(`[data-qa="login"]`)
+    }
+
+    get registerLink(){
+        return cy.get(`[data-qa="register"]`)
+    }
+
     open(){
         return super.open(`/`)
     }
