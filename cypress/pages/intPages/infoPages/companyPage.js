@@ -1,6 +1,6 @@
-import InfoPage from '../infoPages/infoPage';
+import internalPage from '../internalPage';
 
-class CompanyPage extends InfoPage {
+class CompanyPage extends internalPage {
     open() {
         return cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then((response)=> {
             return super.open(`/company/${response.body.payload.user.companyAccount}`)

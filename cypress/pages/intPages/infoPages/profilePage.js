@@ -1,6 +1,8 @@
-import InfoPage from '../infoPages/infoPage';
+import internalPage from '../internalPage';
 
-class ProfilePage extends InfoPage {
+class ProfilePage extends internalPage {
+
+
     open(email, password) {
         return cy.apiLogin(email, password).then((response)=> {
             return super.open(`/profile/${response.body.payload.userId}`)

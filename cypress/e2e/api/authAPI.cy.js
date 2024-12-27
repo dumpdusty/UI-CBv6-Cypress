@@ -66,9 +66,9 @@ describe('AUTH with mocks', () => {
                 cy.log(JSON.stringify(res))
             })
 
-            cy.get(`@loginUIRequest`).then(interception => {
-                    expect(interception.response.statusCode).to.eq(200)
-                    expect(interception.response.body.message).to.eq(`Well done, man!`)
+            cy.get(`@loginUIRequest`).its(`response.body`).then(res => {
+                    expect(res.statusCode).to.eq(200)
+                    expect(res.body.message).to.eq(`Well done, man!`)
             })
 
             // cy.wait(`@loginUIRequest`).its(`response.body`).then(res => {
