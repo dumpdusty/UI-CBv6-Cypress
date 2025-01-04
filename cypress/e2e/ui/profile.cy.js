@@ -1,8 +1,11 @@
 import ProfilePage from "../../pages/intPages/infoPages/profilePage";
+import {LINKS} from "../../fixtures/data";
 
 describe(`USER PROFILE`, () => {
     beforeEach(() => {
+        cy.intercept(`GET`, LINKS.INTERCEPT.USER_INFO).as(`userInfo`);
         ProfilePage.open(Cypress.env('email'), Cypress.env(`password`));
+        cy.wait(`@userInfo`);
     })
 
     it('verify profile dropdown', () => {
@@ -12,13 +15,12 @@ describe(`USER PROFILE`, () => {
     });
 
     it('verify profile info', () => {
-        const subheaders = ['Name', 'Email', `Password`, 'Roles', `Company`, 'Created'];
-        cy.intercept(`GET`, `https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/*`).as(`userInfo`);
+        const subtitles = ['Name', 'Email', `Password`, 'Roles', `Company`, 'Created'];
 
         cy.get(`h4`).first().should(`have.text`, `Profile`);
 
         cy.get(`.setting-item`).find(`h6`).each((item, index) => {
-            cy.wrap(item).should(`be.visible`).and(`have.text`, subheaders[index])
+            cy.wrap(item).should(`be.visible`).and(`have.text`, subtitles[index])
         });
 
         cy.get(`@userInfo`).its(`response.body`).then((response) => {

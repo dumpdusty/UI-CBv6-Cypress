@@ -4,7 +4,11 @@ export const SELECTORS = {
 
 export const LINKS = {
     REGISTER: 'user/register',
-    LOGIN: '/user/login'
+    LOGIN: '/user/login',
+    INTERCEPT: {
+        USER_INFO: 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/*',
+        COMPANY_INFO: 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/company/*'
+    }
 }
 
 export const LABEL = {
@@ -31,3 +35,4 @@ export const ALERTS = {
     SIGNUP: `User with this e-mail exists`,
     LOGIN: `Auth failed`
 }
+

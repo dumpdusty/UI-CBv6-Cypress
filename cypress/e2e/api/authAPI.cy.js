@@ -71,6 +71,7 @@ describe('AUTH with mocks', () => {
                     expect(res.body.message).to.eq(`Well done, man!`)
             })
 
+            // below is to confirm that cy.wait is working only for one time for each request
             // cy.wait(`@loginUIRequest`).its(`response.body`).then(res => {
             //     cy.log(JSON.stringify(res))
             // })
@@ -78,18 +79,18 @@ describe('AUTH with mocks', () => {
     });
 
     //  below is incorrect - cy.intercept should be used only with UI commands !!!
-    describe('MOCK WITH API LOGIN', () => {
-        it('verify user can login with valid credentials', () => {
-            cy.intercept(
-                'POST',
-                'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
-                authSuccessResponse)
-
-            cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then(response => {
-                cy.log(JSON.stringify(response.body))
-                expect(response.status).to.eq(200);
-                expect(response.body.message).to.equal("Auth success");
-            })
-        });
-    });
+    // describe('MOCK WITH API LOGIN', () => {
+    //     it('verify user can login with valid credentials', () => {
+    //         cy.intercept(
+    //             'POST',
+    //             'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/user/login',
+    //             authSuccessResponse)
+    //
+    //         cy.apiLogin(Cypress.env('email'), Cypress.env(`password`)).then(response => {
+    //             cy.log(JSON.stringify(response.body))
+    //             expect(response.status).to.eq(200);
+    //             expect(response.body.message).to.equal("Auth success");
+    //         })
+    //     });
+    // });
 });
