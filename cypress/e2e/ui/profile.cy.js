@@ -1,6 +1,5 @@
 import ProfilePage from "../../pages/intPages/infoPages/profilePage";
 import {LINKS} from "../../fixtures/data";
-import CompanyPage from "../../pages/intPages/infoPages/companyPage";
 
 describe(`USER PROFILE`, () => {
     beforeEach(() => {
