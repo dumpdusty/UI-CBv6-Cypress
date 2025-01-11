@@ -1,5 +1,6 @@
 import ProfilePage from "../../pages/intPages/infoPages/profilePage";
 import {LINKS} from "../../fixtures/data";
+import CompanyPage from "../../pages/intPages/infoPages/companyPage";
 
 describe(`USER PROFILE`, () => {
     beforeEach(() => {
@@ -33,5 +34,9 @@ describe(`USER PROFILE`, () => {
             cy.get(':nth-child(5) > .g-2 > .col-md').should(`have.text`, response.payload.companyAccount.companyName);
             cy.get(':nth-child(6) > .g-2 > .col-md').should(`include.text`, dateCreated);
         });
+    });
+
+    it('verify search client feature', () => {
+        ProfilePage.verifyClientSearch('Jackson')
     });
 });

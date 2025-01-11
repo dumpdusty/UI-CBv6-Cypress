@@ -30,4 +30,10 @@ export default class internalPage extends Page {
         this.logoutLink.should(`be.visible`).and(`have.text`, `Logout`);
     };
 
+    verifyClientSearch(text){
+        cy.get('[placeholder="Enter client name"]').type(text).type('{enter}');
+        cy.get('.table-four').find(`tr`).find(`td`).find(`a`).each(el =>{
+            cy.wrap(el).should(`include.text`, text);
+        })
+    };
 }
