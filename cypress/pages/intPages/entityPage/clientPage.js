@@ -4,7 +4,7 @@ class ClientPage extends internalPage {
 
 
     open(email, password) {
-        return cy.apiLogin(email, password).then((response)=> {
+        return cy.apiLogin(email, password).then(()=> {
             return super.open(`/client`)
         })
     }
