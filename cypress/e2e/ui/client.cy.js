@@ -10,6 +10,7 @@ describe('CLIENT PAGE', () => {
     });
 
     it.only('verify search function with intercept', () => {
+
         cy.intercept('POST', 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/client/search', (req) => {
             if (req.body.name) {
                 req.alias = 'secondSearch'
@@ -18,10 +19,13 @@ describe('CLIENT PAGE', () => {
 
         cy.get('.form-control').type('Blake{enter}');
 
-        cy.wait(`@secondSearch`);
+        cy.wait(`@secondSearch`).its(`response.body`).then(res => {
+            cy.log(res.message)
+            expect(res.message).to.eq(`ClientSearch ok`)
+        })
 
         cy.get(`tbody > tr`).each(el => {
-            cy.wrap(el).find(`td:nth-child(1) > a`).should(`include.text`, 'Blake');
+            cy.wrap(el).find(`td:nth-child(1)`).should(`include.text`, 'Blake');
         })
 
         // waiting for page content loading could be done by cy.get(specific_element).should('be.visible')
