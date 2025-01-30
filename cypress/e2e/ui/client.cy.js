@@ -19,9 +19,16 @@ describe('CLIENT PAGE', () => {
 
         cy.get('.form-control').type('Blake{enter}');
 
-        cy.wait(`@secondSearch`).its(`response.body`).then(res => {
-            cy.log(res.message)
-            expect(res.message).to.eq(`ClientSearch ok`)
+        cy.wait(`@secondSearch`).its(`response`).then(res => {
+            //verify response status code
+            expect(res.statusCode).to.eq(200)
+
+            // verify response body message
+            expect(res.body.message).to.eq(`ClientSearch ok`)
+
+            //verify response body items count matches rendered table rows
+            const clientCount = res.body.payload.items.length
+            cy.get(`tbody > tr`).its('length').should(`eq`, clientCount);
         })
 
         cy.get(`tbody > tr`).each(el => {
