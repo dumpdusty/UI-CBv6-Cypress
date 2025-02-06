@@ -9,7 +9,7 @@ describe('CLIENT PAGE', () => {
         cy.url().should('include', '/client');
     });
 
-    it.only('verify search function with intercept', () => {
+    it('verify search function with intercept', () => {
 
         cy.intercept('POST', 'https://clientbase-server-edu-dae6cac55393.herokuapp.com/v6/client/search', (req) => {
             if (req.body.name) {
@@ -20,7 +20,8 @@ describe('CLIENT PAGE', () => {
         cy.get('.form-control').type('Blake{enter}');
 
         cy.wait(`@secondSearch`).its(`response`).then(res => {
-            //verify response status code
+
+            // verify response status
             expect(res.statusCode).to.eq(200)
 
             // verify response body message
